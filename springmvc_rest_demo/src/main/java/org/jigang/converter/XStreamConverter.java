@@ -18,10 +18,40 @@ import java.nio.charset.Charset;
  * Created by wujigang on 16/7/3.
  */
 public class XStreamConverter extends AbstractHttpMessageConverter<Object> {
-    public final static Charset UTF8     = Charset.forName("UTF-8");
-    private Charset             charset  = UTF8;
+    public final static Charset UTF8 = Charset.forName("UTF-8");
+    private Charset charset = UTF8;
+
+    private String transfer_charset;
 
     protected boolean supports(Class<?> clazz) {
+        return true;
+    }
+
+    public boolean canRead(Class<?> clazz, MediaType mediaType) {
+        if (!super.canRead(clazz, mediaType)) {
+            return false;
+        }
+
+        //判断charset是否匹配
+        Charset reqCharset = mediaType.getCharSet();
+        if (!charset.equals(reqCharset)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean canWrite(Class<?> clazz, MediaType mediaType) {
+        if (!super.canWrite(clazz, mediaType)) {
+            return false;
+        }
+
+        //判断charset是否匹配
+        Charset reqCharset = mediaType.getCharSet();
+        if (!charset.equals(reqCharset)) {
+            return false;
+        }
+
         return true;
     }
 
@@ -31,7 +61,7 @@ public class XStreamConverter extends AbstractHttpMessageConverter<Object> {
         InputStream in = inputMessage.getBody();
 
         byte[] buf = new byte[1024];
-        for (;;) {
+        for (; ; ) {
             int len = in.read(buf);
             if (len == -1) {
                 break;
@@ -52,5 +82,10 @@ public class XStreamConverter extends AbstractHttpMessageConverter<Object> {
         String text = XmlUtil.toXML(o);
         byte[] bytes = text.getBytes(charset);
         out.write(bytes);
+    }
+
+    public void setTransfer_charset(String transfer_charset) {
+        this.transfer_charset = transfer_charset;
+        this.charset = Charset.forName(transfer_charset);
     }
 }

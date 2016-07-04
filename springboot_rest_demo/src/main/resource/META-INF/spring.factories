@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationContextInitializer=\
+org.jigang.dubbo.DubboConfigurationApplicationContextInitializer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.jigang.dubbo.DubboAutoConfiguration

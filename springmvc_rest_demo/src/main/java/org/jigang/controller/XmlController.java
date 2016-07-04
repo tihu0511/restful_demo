@@ -39,7 +39,7 @@ public class XmlController {
         return sb.toString();
     }
 
-    @RequestMapping(value = "/v2/{username}", method = RequestMethod.POST, produces = "application/xml")
+    @RequestMapping(value = "/v2/{username}", method = RequestMethod.POST, produces = "application/xml;charset=gbk" )
     @ResponseBody
     public XmlOutDto testPostXml(@PathVariable("username") String username, @RequestBody XmlInDto inDto) {
         System.out.println(username);

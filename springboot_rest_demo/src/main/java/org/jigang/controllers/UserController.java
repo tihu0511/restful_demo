@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by wujigang on 16/7/3.
  */
-@RestController
-@RequestMapping("/user")
+//@RestController
+//@RequestMapping("/user")
 public class UserController {
     @RequestMapping(value = "/v1/{id}")
     public User view(@PathVariable("id") Long id) {

@@ -17,14 +17,19 @@
             </bean>
             <bean class="org.jigang.converter.XStreamConverter">
                 <property name="supportedMediaTypes" value="application/xml" />
+                <property name="transfer_charset" value="UTF-8" />
+            </bean>
+            <bean class="org.jigang.converter.XStreamConverter">
+                <property name="supportedMediaTypes" value="application/xml" />
+                <property name="transfer_charset" value="GBK" />
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"></property>
-    </bean>
+    </bean>-->
 
 </beans>
