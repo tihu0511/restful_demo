@@ -18,7 +18,7 @@ public class TestController {
     @Autowired
     private TestDao testDao;
 
-    @Reference(version = "1.0.0")
+//    @Reference(version = "1.0.0", check = false)
     private ITest test;
 
     @RequestMapping("/test")
